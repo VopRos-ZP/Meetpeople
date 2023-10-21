@@ -1,7 +1,8 @@
-//@Suppress("DSL_SCOPE_VIOLATION") // uncomment it if gradle version < 8.2
 plugins {
     alias(libs.plugins.application)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.hilt.android)
 }
 
 android {
@@ -37,7 +38,8 @@ android {
 
 dependencies {
     /** DI **/
-
+    implementation(libs.hilt.android)
+    ksp(libs.hilt.compiler)
     /** Core **/
     implementation(libs.core.ktx)
     implementation(libs.appcompat)
