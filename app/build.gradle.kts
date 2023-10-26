@@ -1,7 +1,9 @@
-//@Suppress("DSL_SCOPE_VIOLATION") // uncomment it if gradle version < 8.2
 plugins {
     alias(libs.plugins.application)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.serialization)
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.hilt.android)
 }
 
 android {
@@ -12,7 +14,7 @@ android {
         applicationId = "com.meetpeople"
         minSdk = 28
         versionCode = 1
-        versionName = "1.0"
+        versionName = "0.0.1"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -36,13 +38,16 @@ android {
 }
 
 dependencies {
+    /** Serialization **/
+    implementation(libs.kotlin.serialization)
+    /** Network **/
+    implementation(platform(libs.okhttp.bom))
+    implementation(libs.bundles.network)
     /** DI **/
-
+    implementation(libs.hilt.android)
+    ksp(libs.hilt.compiler)
     /** Core **/
-    implementation(libs.core.ktx)
-    implementation(libs.appcompat)
-    implementation(libs.material)
-    implementation(libs.constraintlayout)
+    implementation(libs.bundles.android.core)
     /** Test **/
     testImplementation(libs.junit)
     /** Android test **/
