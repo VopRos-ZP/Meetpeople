@@ -1,12 +1,19 @@
 package com.meetpeople.domain
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 data class Person(
-    val id: String,
-    val phone: String,
+    val id: Long,
     val firstname: String,
     val lastname: String,
-    val age: Int,
-    val location: String,
-    val images: List<String>,
-    val vkId: String
+    val password: String,
+    val phone: String,
+    val gender: String,
+    val birthday: Long,
+    val location: Location,
+    val maritalStatus: String,
+    val status: String,
+    val about: String,
+    val premium: Boolean
 )
