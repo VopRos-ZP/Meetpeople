@@ -6,10 +6,10 @@ import retrofit2.http.Path
 
 interface API {
 
-    @GET("/persons/")
+    @GET("persons/")
     suspend fun fetchPersons(): List<Person>
 
-    @GET("/persons/{id}")
+    @GET("persons/{id}")
     suspend fun fetchPerson(@Path("id") id: Long): Person?
 
 }
