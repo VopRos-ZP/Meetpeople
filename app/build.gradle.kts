@@ -38,6 +38,8 @@ android {
 }
 
 dependencies {
+    /** VK ID **/
+    implementation(libs.oauth.vk)
     /** Serialization **/
     implementation(libs.kotlin.serialization)
     /** Network **/
