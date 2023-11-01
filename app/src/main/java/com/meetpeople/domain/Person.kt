@@ -1,5 +1,6 @@
 package com.meetpeople.domain
 
+import com.meetpeople.domain.entities.Session
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -15,5 +16,8 @@ data class Person(
     val maritalStatus: String,
     val status: String,
     val about: String,
-    val premium: Boolean
+    val premium: Boolean,
+    val vkId: String?,
+    val onlineStatus: String,
+    val sessions: Set<Session>
 )
