@@ -2,4 +2,8 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="active_icon">#FFFFFFFF</color>
+    <color name="inactive_icon">#C2FFFFFF</color>
+    <color name="item_ripple_color">#14FFFFFF</color>
+    <color name="main">#FFA000</color>
 </resources>
