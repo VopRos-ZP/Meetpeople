@@ -1,39 +1,155 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_margin="10dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#ccc"
-        android:padding="5dp">
+        android:padding="8dp">
 
-        <TextView
-            app:layout_constraintTop_toTopOf="parent"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/ll_authorInfo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:textAlignment="center"
+            android:paddingBottom="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:id="@+id/tv_dateDay"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="12" />
+            app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            app:layout_constraintTop_toBottomOf="@id/tv_dateDay"
-            app:layout_constraintStart_toStartOf="parent"
-            android:id="@+id/tv_dateMonth"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="АПР" />
+            <ImageView
+                android:id="@+id/icon"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/icon_shoes_color"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            app:layout_constraintTop_toBottomOf="@id/tv_dateMonth"
-            app:layout_constraintStart_toStartOf="parent"
-            android:id="@+id/tv_dateYear"
+            <TextView
+                android:id="@+id/tv_userName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="7dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/icon"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Сергей Гуков приглашает" />
+
+            <TextView
+                android:id="@+id/tv_views"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawablePadding="5dp"
+                android:gravity="center_vertical"
+                app:drawableStartCompat="@drawable/icon_views"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="760" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_dateInfo"
             android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:textAlignment="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ll_authorInfo">
+
+            <TextView
+                android:id="@+id/tv_dateWeekday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ПН"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/tv_dateDay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="12" />
+
+            <TextView
+                android:id="@+id/tv_dateMonth"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="АПР" />
+
+            <TextView
+                android:id="@+id/tv_dateYear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2024" />
+
+            <TextView
+                android:id="@+id/tv_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="19:00" />
+
+        </LinearLayout>
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="1dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="5dp"
+            android:background="@color/main"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/ll_dateInfo"
+            app:layout_constraintTop_toBottomOf="@id/ll_authorInfo" />
+
+        <LinearLayout
+            android:id="@+id/name"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="2024" />
+            android:layout_marginBottom="5dp"
+            android:padding="5dp"
+            app:layout_constraintBottom_toTopOf="@id/info"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/view"
+            app:layout_constraintTop_toBottomOf="@id/ll_authorInfo">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Хочу сходить погулять по красивой вечерней питерской набережной"
+                android:textAlignment="center"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/info"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/view"
+            app:layout_constraintTop_toBottomOf="@+id/name">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/main"
+                android:drawablePadding="5dp"
+                android:padding="5dp"
+                android:gravity="center_vertical"
+                android:text="с девушкой"
+                app:drawableStartCompat="@drawable/icon_groups" />
+
+        </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
