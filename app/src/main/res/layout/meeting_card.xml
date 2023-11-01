@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="10dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ccc"
+        android:padding="5dp">
+
+        <TextView
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:id="@+id/tv_dateDay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="12" />
+
+        <TextView
+            app:layout_constraintTop_toBottomOf="@id/tv_dateDay"
+            app:layout_constraintStart_toStartOf="parent"
+            android:id="@+id/tv_dateMonth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="АПР" />
+
+        <TextView
+            app:layout_constraintTop_toBottomOf="@id/tv_dateMonth"
+            app:layout_constraintStart_toStartOf="parent"
+            android:id="@+id/tv_dateYear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2024" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>
