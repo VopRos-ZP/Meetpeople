@@ -133,6 +133,9 @@
                 android:textSize="16sp" />
 
             <TextView
+                android:drawableStart="@drawable/icon_location"
+                android:gravity="center_vertical"
+                android:drawablePadding="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Санкт-Петербург, генерала Кравченко 8"
