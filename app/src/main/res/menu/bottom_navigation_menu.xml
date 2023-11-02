@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/bottom_home"
+        android:icon="@drawable/icon_home"
+        android:title="Главная" />
+    <item
+        android:id="@+id/bottom_dialogs"
+        android:icon="@drawable/icon_dialogs"
+        android:title="Диалоги" />
+    <item
+        android:id="@+id/bottom_createMeeting"
+        android:icon="@drawable/icon_shoes"
+        android:title="Встреча" />
+    <item
+        android:id="@+id/bottom_notifications"
+        android:icon="@drawable/icon_notifications"
+        android:title="События" />
+    <item
+        android:id="@+id/bottom_profile"
+        android:icon="@drawable/icon_profile"
+        android:title="Профиль" />
+
+</menu>
