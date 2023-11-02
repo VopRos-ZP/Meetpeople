@@ -1,27 +1,30 @@
 package com.meetpeople.views.main
 
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.meetpeople.domain.entities.Person
+import com.meetpeople.mvi.MviIntentBuilder
+import com.meetpeople.mvi.MviModel
 import com.meetpeople.repositories.PersonRepository
+import com.meetpeople.repositories.TokenRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
-    private val personRepository: PersonRepository
-) : ViewModel() {
+    private val personRepository: PersonRepository,
+    private val tokenRepository: TokenRepository
+) : MviModel<MainViewState, MainViewIntent>(
+    initState = MainViewState.Loading,
+    errorState = { MainViewState.Error(it) }
+) {
 
-    private val _persons = MutableStateFlow<List<Person>?>(null)
-    val persons = _persons.asStateFlow()
+    override val mviIntentBuilder: MviIntentBuilder<MainViewIntent> = MviIntentBuilder {
+        onIntent<MainViewIntent.Launch> { fetchPersons() }
+    }
 
-    fun fetchPersons() {
-        viewModelScope.launch {
-            _persons.emit(personRepository.fetchAll())
-        }
+    private suspend fun fetchPersons() {
+        val token = tokenRepository.fetch()
+        val response = personRepository.fetchAll(token)
+        response.onSuccess { emitState(MainViewState.Success(it.result)) }
+        response.onError { emitState(MainViewState.Error(it.message)) }
     }
 
 }

@@ -1,8 +1,10 @@
 package com.meetpeople.di
 
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
-import com.meetpeople.retrofit.API
-import com.meetpeople.retrofit.AuthAPI
+import com.meetpeople.domain.entities.Person
+import com.meetpeople.retrofit.api.API
+import com.meetpeople.retrofit.api.PersonAPI
+import com.meetpeople.retrofit.api.AuthAPI
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -29,14 +31,14 @@ class RetrofitModule {
 
     @Provides
     fun provideRetrofit(client: OkHttpClient): Retrofit = Retrofit.Builder()
-        .baseUrl("http://192.168.0.2:8088/api/v0/")
+        .baseUrl("http://192.168.1.103:8088/api/v0/")
         .client(client)
         .addConverterFactory(ScalarsConverterFactory.create())
         .addConverterFactory(Json.asConverterFactory("application/json".toMediaType()))
         .build()
 
     @Provides
-    fun provideAPI(retrofit: Retrofit): API = retrofit.create(API::class.java)
+    fun providePersonAPI(retrofit: Retrofit): PersonAPI = retrofit.create(PersonAPI::class.java)
 
     @Provides
     fun provideAuthAPI(retrofit: Retrofit): AuthAPI = retrofit.create(AuthAPI::class.java)

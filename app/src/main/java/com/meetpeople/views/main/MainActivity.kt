@@ -3,6 +3,7 @@ package com.meetpeople.views.main
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.meetpeople.R
@@ -20,11 +21,24 @@ class MainActivity : AppCompatActivity() {
 
         val text = findViewById<TextView>(R.id.textView)
 
-        viewModel.fetchPersons()
+
 
         lifecycleScope.launch {
-            viewModel.persons.collect {
-               text.text = "Persons size = ${it?.size}"
+            viewModel.viewState.collect {
+                when (it) {
+                    is MainViewState.Loading -> {}
+                    is MainViewState.Success -> {
+                        text.text = "Persons size = ${it.persons.size}"
+                    }
+                    is MainViewState.Error -> {
+                        /* Show error */
+                        Toast.makeText(
+                            applicationContext,
+                            it.message,
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
             }
         }
     }

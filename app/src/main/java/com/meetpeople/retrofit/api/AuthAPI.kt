@@ -1,4 +1,4 @@
-package com.meetpeople.retrofit
+package com.meetpeople.retrofit.api
 
 import com.meetpeople.domain.LoginRequest
 import com.meetpeople.domain.entities.Person

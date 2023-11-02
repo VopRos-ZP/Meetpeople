@@ -8,13 +8,15 @@ import com.meetpeople.domain.TextResponse
 import com.meetpeople.repositories.AuthRepository
 import com.meetpeople.mvi.MviIntentBuilder
 import com.meetpeople.mvi.MviModel
+import com.meetpeople.repositories.TokenRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.serialization.json.Json
 import javax.inject.Inject
 
 @HiltViewModel
 class SignInViewModel @Inject constructor(
-    private val authRepository: AuthRepository
+    private val authRepository: AuthRepository,
+    private val tokenRepository: TokenRepository
 ) : MviModel<SignInViewState, SignInViewIntent>(
     initState = SignInViewState.Loading,
     errorState = { SignInViewState.Error(it) }
@@ -33,6 +35,7 @@ class SignInViewModel @Inject constructor(
                 Log.d(SignInViewModel::class.java.simpleName, "${res.result}")
                 emitState(SignInViewState.Success(res.result))
                 // save token to store
+                tokenRepository.put(res.token)
             }
             response.errorBody() != null -> {
                 val errResponse: TextResponse = Json.decodeFromString(response.errorBody()!!.string())

@@ -1,5 +1,6 @@
 package com.meetpeople.views.signIn
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -7,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.snackbar.Snackbar
 import com.meetpeople.databinding.SignInActivityBinding
+import com.meetpeople.views.main.MainActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -25,7 +27,11 @@ class SignInActivity : AppCompatActivity() {
             viewModel.viewState.collect {
                 when (it) {
                     is SignInViewState.Loading -> {/* No action */}
-                    is SignInViewState.Success -> {/* navigate to main screen */}
+                    is SignInViewState.Success -> {
+                        /* navigate to main screen */
+                        val intent = Intent(applicationContext, MainActivity::class.java)
+                        startActivity(intent)
+                    }
                     is SignInViewState.Error -> {
                         /* Show error */
                         Toast.makeText(

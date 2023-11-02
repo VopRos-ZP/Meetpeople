@@ -1,7 +1,5 @@
 package com.meetpeople.domain.entities
 
-import com.meetpeople.domain.entities.Location
-import com.meetpeople.domain.entities.Session
 import kotlinx.serialization.Serializable
 
 @Serializable
