@@ -14,8 +14,8 @@ dagger = "2.48.1"
 retrofit = "2.9.0"
 retrofit-serialization = "1.0.0"
 datastore = "1.0.0"
-firebase-bom = "32.4.0"
-navigation = "2.7.4"
+firebase-bom = "32.5.0"
+navigation = "2.7.5"
 okhttp-bom = "4.11.0"
 
 [libraries]
@@ -60,6 +60,7 @@ kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 hilt-android = { id = "com.google.dagger.hilt.android", version.ref = "dagger" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+kotlin-safeargs = { id = "androidx.navigation.safeargs.kotlin", version.ref = "navigation" }
 
 [bundles]
 android-core = ["core-ktx", "appcompat", "material", "constraintlayout", "navigation-ktx", "navigation-ui"]

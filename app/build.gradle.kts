@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.serialization)
+    alias(libs.plugins.kotlin.safeargs)
     alias(libs.plugins.ksp)
     alias(libs.plugins.hilt.android)
 }
