@@ -1,6 +1,6 @@
 package com.meetpeople.views.signIn
 
-import com.meetpeople.domain.Person
+import com.meetpeople.domain.entities.Person
 
 sealed class SignInViewState {
     data object Loading: SignInViewState()

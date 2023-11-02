@@ -12,6 +12,7 @@ import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
+import retrofit2.converter.scalars.ScalarsConverterFactory
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -28,8 +29,9 @@ class RetrofitModule {
 
     @Provides
     fun provideRetrofit(client: OkHttpClient): Retrofit = Retrofit.Builder()
-        .baseUrl("http://192.168.1.103:8088/api/v0/")
+        .baseUrl("http://192.168.0.2:8088/api/v0/")
         .client(client)
+        .addConverterFactory(ScalarsConverterFactory.create())
         .addConverterFactory(Json.asConverterFactory("application/json".toMediaType()))
         .build()
 

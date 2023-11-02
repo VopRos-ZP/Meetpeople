@@ -1,9 +1,11 @@
 package com.meetpeople.views.signIn
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import com.google.android.material.snackbar.Snackbar
 import com.meetpeople.databinding.SignInActivityBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -19,15 +21,22 @@ class SignInActivity : AppCompatActivity() {
         binding = SignInActivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-//        lifecycleScope.launch {
-//            viewModel.viewState.collect {
-//                when (it) {
-//                    is SignInViewState.Loading -> {/* No action */}
-//                    is SignInViewState.Success -> {/* navigate to main screen */}
-//                    is SignInViewState.Error -> {/* Show error */}
-//                }
-//            }
-//        }
+        lifecycleScope.launch {
+            viewModel.viewState.collect {
+                when (it) {
+                    is SignInViewState.Loading -> {/* No action */}
+                    is SignInViewState.Success -> {/* navigate to main screen */}
+                    is SignInViewState.Error -> {
+                        /* Show error */
+                        Toast.makeText(
+                            applicationContext,
+                            it.message,
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
+            }
+        }
 
         binding.signInBtn.setOnClickListener {
             val phone = binding.phoneEditText.text.toString()

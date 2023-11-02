@@ -1,56 +1,44 @@
 package com.meetpeople.views.signIn
 
 import android.util.Log
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.meetpeople.domain.LoginRequest
-import com.meetpeople.domain.Person
+import com.meetpeople.domain.entities.Person
+import com.meetpeople.domain.Response
+import com.meetpeople.domain.TextResponse
 import com.meetpeople.repositories.AuthRepository
+import com.meetpeople.mvi.MviIntentBuilder
+import com.meetpeople.mvi.MviModel
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.CoroutineExceptionHandler
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.launch
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import retrofit2.await
-import retrofit2.awaitResponse
+import kotlinx.serialization.json.Json
 import javax.inject.Inject
 
 @HiltViewModel
 class SignInViewModel @Inject constructor(
     private val authRepository: AuthRepository
-) : ViewModel() {
+) : MviModel<SignInViewState, SignInViewIntent>(
+    initState = SignInViewState.Loading,
+    errorState = { SignInViewState.Error(it) }
+) {
 
-    private val _viewState = MutableStateFlow<SignInViewState>(SignInViewState.Loading)
-    val viewState = _viewState.asStateFlow()
-
-    fun intent(intent: SignInViewIntent) {
-        when (intent) {
-            is SignInViewIntent.Launch -> loading()
-            is SignInViewIntent.SignIn -> signIn(intent.phone, intent.password)
-        }
+    override val mviIntentBuilder = MviIntentBuilder<SignInViewIntent> {
+        onIntent<SignInViewIntent.Launch> { emitState(SignInViewState.Loading) }
+        onIntent<SignInViewIntent.SignIn> { signIn(it.phone, it.password) }
     }
 
-    private fun loading() {
-        viewModelScope.launch { _viewState.emit(SignInViewState.Loading) }
-    }
-
-    private fun signIn(phone: String, password: String) {
-        val handler = CoroutineExceptionHandler { _, throwable ->
-            viewModelScope.launch {
-                Log.d("SignInViewModel", "ERROR ${throwable.message}")
-                _viewState.emit(SignInViewState.Error(throwable.message ?: ""))
+    private suspend fun signIn(phone: String, password: String) {
+        val response = authRepository.login(LoginRequest(phone, password))
+        when {
+            response.body() != null -> {
+                val res: Response<Person> = Json.decodeFromString(response.body()!!)
+                Log.d(SignInViewModel::class.java.simpleName, "${res.result}")
+                emitState(SignInViewState.Success(res.result))
+                // save token to store
             }
-        }
-        viewModelScope.launch(handler) {
-            val call = authRepository.login(LoginRequest(phone, password))
-            val response = call.errorBody()
-
-            Log.d("SignInViewModel", "$response")
-            //viewModelScope.launch { _viewState.emit(SignInViewState.Success(response.result)) }
-            // save token to store
+            response.errorBody() != null -> {
+                val errResponse: TextResponse = Json.decodeFromString(response.errorBody()!!.string())
+                Log.d(SignInViewModel::class.java.simpleName, errResponse.message)
+                emitState(SignInViewState.Error(errResponse.message))
+            }
         }
     }
 
