@@ -35,11 +35,14 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 dependencies {
-    /** VK ID **/
-    implementation(libs.oauth.vk)
+    /** DataStore **/
+    implementation(libs.datastore)
     /** Serialization **/
     implementation(libs.kotlin.serialization)
     /** Network **/

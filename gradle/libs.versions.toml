@@ -11,13 +11,12 @@ material = "1.10.0"
 constraintlayout = "2.1.4"
 ksp = "1.9.0-1.0.13"
 dagger = "2.48.1"
-oauth-vk = "0.114-24432"
 retrofit = "2.9.0"
 retrofit-serialization = "1.0.0"
+datastore = "1.0.0"
 firebase-bom = "32.4.0"
 navigation = "2.7.4"
 okhttp-bom = "4.11.0"
-vk = "4.1.0"
 
 [libraries]
 # Tests
@@ -36,12 +35,12 @@ navigation-ui = { module = "androidx.navigation:navigation-ui-ktx", version.ref 
 hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "dagger" }
 hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "dagger" }
 # OkHttp
-oauth-vk = { module = "com.vk:oauth-vk", version.ref = "oauth-vk" }
 okhttp-bom = { module = "com.squareup.okhttp3:okhttp-bom", version.ref = "okhttp-bom" }
 okhttp = { module = "com.squareup.okhttp3:okhttp" }
 okhttp-logging = { module = "com.squareup.okhttp3:logging-interceptor" }
 # Retrofit
 retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
+retrofit-scalars = { module = "com.squareup.retrofit2:converter-scalars", version.ref = "retrofit" }
 retrofit-serialization = { module = "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter", version.ref = "retrofit-serialization" }
 # Firebase
 firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebase-bom" }
@@ -52,9 +51,8 @@ firebase-storage = { module = "com.google.firebase:firebase-storage-ktx" }
 firebase-auth = { module = "com.google.firebase:firebase-auth-ktx" }
 # Kotlin serialization
 kotlin-serialization = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlin-serialization" }
-# VK SDK
-vksdk-core = { module = "com.vk:android-sdk-core", version.ref = "vk" }
-vksdk-api = { module = "com.vk:android-sdk-api", version.ref = "vk" }
+# DataStore
+datastore = { module = "androidx.datastore:datastore-preferences", version.ref = "datastore" }
 
 [plugins]
 application = { id = "com.android.application", version.ref = "agp" }
@@ -65,6 +63,6 @@ kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", versi
 
 [bundles]
 android-core = ["core-ktx", "appcompat", "material", "constraintlayout", "navigation-ktx", "navigation-ui"]
-network = ["okhttp", "okhttp-logging", "retrofit", "retrofit-serialization"]
+network-bom = ["okhttp-bom"]
+network = ["okhttp", "okhttp-logging", "retrofit", "retrofit-scalars", "retrofit-serialization"]
 firebase-services = ["firebase-database", "firebase-firestore", "firebase-storage", "firebase-auth", "firebase-analytics"]
-vk = ["vksdk-core", "vksdk-api"]
