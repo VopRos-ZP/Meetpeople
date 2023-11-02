@@ -25,14 +25,13 @@ interface PersonAPI {
     @POST("persons/")
      suspend fun create(
         @Header("Authorization") token: String,
-        @Body t: Person
+        @Body body: Person
     ): RetrofitResponse<Person>
 
-    @PUT("persons/{id}")
+    @PUT("persons/")
      suspend fun update(
         @Header("Authorization") token: String,
-        @Path("id") id: Long,
-        @Body t: Person
+        @Body body: Person
     ): RetrofitResponse<Person>
 
     @DELETE("persons/{id}")

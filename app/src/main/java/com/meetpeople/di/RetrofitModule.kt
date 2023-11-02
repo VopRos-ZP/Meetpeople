@@ -1,24 +1,29 @@
 package com.meetpeople.di
 
+import android.content.Context
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
-import com.meetpeople.domain.entities.Person
-import com.meetpeople.retrofit.api.API
-import com.meetpeople.retrofit.api.PersonAPI
+import com.meetpeople.datastore.LocalStore
 import com.meetpeople.retrofit.api.AuthAPI
+import com.meetpeople.retrofit.api.PersonAPI
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
-import retrofit2.converter.scalars.ScalarsConverterFactory
+import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
 class RetrofitModule {
+
+    @Provides
+    @Singleton
+    fun provideLocalStore(@ApplicationContext ctx: Context): LocalStore = LocalStore(ctx)
 
     @Provides
     fun provideLoggingInterceptor(): HttpLoggingInterceptor = HttpLoggingInterceptor()
@@ -33,7 +38,6 @@ class RetrofitModule {
     fun provideRetrofit(client: OkHttpClient): Retrofit = Retrofit.Builder()
         .baseUrl("http://192.168.1.103:8088/api/v0/")
         .client(client)
-        .addConverterFactory(ScalarsConverterFactory.create())
         .addConverterFactory(Json.asConverterFactory("application/json".toMediaType()))
         .build()
 

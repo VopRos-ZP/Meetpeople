@@ -21,8 +21,6 @@ class MainActivity : AppCompatActivity() {
 
         val text = findViewById<TextView>(R.id.textView)
 
-
-
         lifecycleScope.launch {
             viewModel.viewState.collect {
                 when (it) {
@@ -41,5 +39,6 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+        viewModel.intent(MainViewIntent.Launch)
     }
 }

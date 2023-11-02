@@ -41,6 +41,8 @@ android {
 }
 
 dependencies {
+    /** DataStore **/
+    implementation(libs.datastore)
     /** Serialization **/
     implementation(libs.kotlin.serialization)
     /** Network **/
