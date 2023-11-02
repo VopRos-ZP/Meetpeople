@@ -1,4 +1,4 @@
-package com.meetpeople.domain
+package com.meetpeople.domain.entities
 
 import kotlinx.serialization.Serializable
 

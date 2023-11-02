@@ -1,9 +1,7 @@
 package com.meetpeople.repositories
 
-import com.meetpeople.domain.Person
+import com.meetpeople.domain.entities.Person
 import com.meetpeople.retrofit.API
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.asFlow
 import javax.inject.Inject
 
 class PersonRepository @Inject constructor(private val api: API) : Repository<Person> {

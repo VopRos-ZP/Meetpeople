@@ -1,6 +1,6 @@
 package com.meetpeople.retrofit
 
-import com.meetpeople.domain.Person
+import com.meetpeople.domain.entities.Person
 import retrofit2.http.GET
 import retrofit2.http.Path
 
