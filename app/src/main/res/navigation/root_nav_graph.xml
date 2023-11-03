@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root_nav_graph"
+    app:startDestination="@id/splashFragment">
+    <fragment
+        android:id="@+id/rootFragment"
+        android:name="com.meetpeople.views.root.RootFragment"
+        android:label="RootFragment"
+        tools:layout="@layout/fragment_root">
+        <argument
+            android:name="id"
+            app:argType="long" />
+        <action
+            android:id="@+id/action_rootFragment_to_auth_graph"
+            app:destination="@id/auth_graph" />
+    </fragment>
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.meetpeople.views.splash.SplashFragment"
+        android:label="SplashFragment" >
+        <action
+            android:id="@+id/action_splashFragment_to_rootFragment"
+            app:destination="@id/rootFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popUpTo="@id/splashFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_splashFragment_to_auth_graph"
+            app:destination="@id/auth_graph"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left" />
+    </fragment>
+    <include app:graph="@navigation/auth_graph" />
+
+</navigation>

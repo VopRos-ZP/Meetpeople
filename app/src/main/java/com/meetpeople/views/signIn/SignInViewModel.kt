@@ -23,14 +23,17 @@ class SignInViewModel @Inject constructor(
     }
 
     private suspend fun signIn(phone: String, password: String) {
-        authRepository.login(LoginRequest(phone, password)).apply {
+        val p = if (phone.startsWith("+7")) phone.replaceFirst("+7", "8")
+        else phone
+        authRepository.login(LoginRequest(p, password)).apply {
             onSuccess {
                 emitState(SignInViewState.Success(it.result))
                 localStore.saveToken(it.token)
+                localStore.saveId(it.result.id)
+                localStore.savePhone(p)
+                localStore.savePassword(password)
             }
-            onError {
-                emitState(SignInViewState.Error(it.message))
-            }
+            onError { emitState(SignInViewState.Error(it.message)) }
         }
     }
 

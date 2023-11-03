@@ -19,4 +19,4 @@ data class Person(
     val vkId: String?,
     val onlineStatus: String,
     val sessions: Set<Session>
-)
+) : java.io.Serializable

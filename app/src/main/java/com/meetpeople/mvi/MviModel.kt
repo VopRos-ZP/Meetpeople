@@ -18,7 +18,7 @@ abstract class MviModel<S, I>(
 
     private val mviIntentImpl = MviIntentImpl<I>()
 
-    abstract val mviIntentBuilder: MviIntentBuilder<I>
+    protected abstract val mviIntentBuilder: MviIntentBuilder<I>
 
     private val errorHandler = CoroutineExceptionHandler { _, err ->
         viewModelScope.launch { emitState(errorState(err.localizedMessage ?: "")) }

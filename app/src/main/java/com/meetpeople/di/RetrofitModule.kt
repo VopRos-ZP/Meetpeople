@@ -36,7 +36,7 @@ class RetrofitModule {
 
     @Provides
     fun provideRetrofit(client: OkHttpClient): Retrofit = Retrofit.Builder()
-        .baseUrl("http://192.168.1.103:8088/api/v0/")
+        .baseUrl("http://192.168.1.101:8088/api/v0/")
         .client(client)
         .addConverterFactory(Json.asConverterFactory("application/json".toMediaType()))
         .build()

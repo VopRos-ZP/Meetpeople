@@ -18,13 +18,14 @@ class ProfileViewModel @Inject constructor(
 ) {
 
     override val mviIntentBuilder = MviIntentBuilder<ProfileViewIntent> {
-        onIntent<ProfileViewIntent.Launch> { fetchPerson(it.id) }
+        onIntent<ProfileViewIntent.Launch> { fetchPerson() }
     }
 
-    private suspend fun fetchPerson(id: Long) {
-        localStore.token.collect { token ->
+    private suspend fun fetchPerson() {
+        localStore.config.collect { (token, id, lr) ->
             if (token == null) return@collect
-            personRepository.fetchOne(JwtUtils.bearer(token), id).apply {
+            if (id == null) return@collect
+            personRepository.fetchOne(token, id).apply {
                 onError { emitState(ProfileViewState.Error(it.message)) }
                 onSuccess { emitState(ProfileViewState.Success(it.result)) }
             }

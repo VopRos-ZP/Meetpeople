@@ -1,18 +1,16 @@
 package com.meetpeople.views.main
 
-import android.util.Log
 import com.meetpeople.datastore.LocalStore
 import com.meetpeople.mvi.MviIntentBuilder
 import com.meetpeople.mvi.MviModel
-import com.meetpeople.repositories.PersonRepository
-import com.meetpeople.utils.JwtUtils
+import com.meetpeople.repositories.AuthRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
     private val localStore: LocalStore,
-    private val personRepository: PersonRepository
+    private val authRepository: AuthRepository
 ) : MviModel<MainViewState, MainViewIntent>(
     initState = MainViewState.Loading,
     errorState = { MainViewState.Error(it) }
@@ -23,12 +21,18 @@ class MainViewModel @Inject constructor(
     }
 
     private suspend fun fetchPersons() {
-        localStore.token.collect { token ->
-            if (token == null) return@collect
-            personRepository.fetchAll(JwtUtils.bearer(token)).apply {
-                onSuccess { emitState(MainViewState.Success(it.result)) }
-                onError { emitState(MainViewState.Error(it.message)) }
-            }
+        localStore.config.collect { (_, _, lr) ->
+            if (lr.phone.isNotEmpty() && lr.password.isNotEmpty()) {
+                authRepository.login(lr).apply {
+                    onError { emitState(MainViewState.Error(it.message)) }
+                    onSuccess {
+                        emitState(MainViewState.Home(it.result))
+                        localStore.saveToken(it.token)
+                        localStore.savePhone(lr.phone)
+                        localStore.savePassword(lr.password)
+                    }
+                }
+            } else { emitState(MainViewState.Login) }
         }
     }
 

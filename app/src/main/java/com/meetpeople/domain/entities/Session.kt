@@ -7,4 +7,4 @@ data class Session(
     val id: Long,
     val loginDate: Long,
     val ipAddress: String
-)
+) : java.io.Serializable

@@ -8,4 +8,4 @@ data class Location(
     val country: String,
     val city: String,
     val coordinates: String
-)
+) : java.io.Serializable
