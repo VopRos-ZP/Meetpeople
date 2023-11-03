@@ -45,6 +45,7 @@ dependencies {
     implementation(libs.bundles.network)
     /** DI **/
     implementation(libs.hilt.android)
+    implementation(libs.play.services.maps)
     ksp(libs.hilt.compiler)
     /** Core **/
     implementation(libs.bundles.android.core)

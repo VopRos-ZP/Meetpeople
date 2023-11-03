@@ -52,7 +52,7 @@
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/icon"
-        tools:text="Ваш отклик на встречу одобрили." />
+        tools:text="Пользователь желает пойти с вами на встречу." />
 
     <TextView
         android:id="@+id/tv_time"
@@ -62,7 +62,7 @@
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="12:32" />
+        tools:text="пн" />
 
     <com.google.android.material.divider.MaterialDivider
         android:id="@+id/view"
