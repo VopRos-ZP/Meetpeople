@@ -52,7 +52,9 @@ dependencies {
     implementation(libs.kotlin.serialization)
     /** Network **/
     implementation(platform(libs.okhttp.bom))
-    implementation(libs.bundles.network)
+    implementation(libs.bundles.okhttp)
+    implementation(libs.bundles.retrofit)
+    implementation(libs.bundles.ktor)
     /** DI **/
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)
