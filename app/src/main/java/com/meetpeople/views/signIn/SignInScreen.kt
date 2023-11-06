@@ -5,7 +5,7 @@ import androidx.compose.runtime.Composable
 import com.meetpeople.nav.graph.AuthNavGraph
 import com.ramcosta.composedestinations.annotation.Destination
 
-@AuthNavGraph
+@AuthNavGraph(start = true)
 @Destination
 @Composable
 fun SignInScreen() {
