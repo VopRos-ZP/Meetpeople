@@ -30,14 +30,18 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "${JavaVersion.VERSION_17}"
     }
     buildFeatures {
         viewBinding = true
+        compose = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.2"
     }
 }
 
@@ -54,6 +58,13 @@ dependencies {
     ksp(libs.hilt.compiler)
     /** Core **/
     implementation(libs.bundles.android.core)
+    /** Compose **/
+    implementation(platform(libs.compose.bom))
+    implementation(libs.bundles.compose)
+    debugImplementation(libs.compose.ui.tooling)
+    /** Navigation **/
+    implementation(libs.bundles.navigation)
+    ksp(libs.compose.destinations.ksp)
     /** Test **/
     testImplementation(libs.junit)
     /** Android test **/
