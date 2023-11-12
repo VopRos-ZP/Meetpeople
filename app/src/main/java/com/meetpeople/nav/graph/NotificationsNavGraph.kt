@@ -2,6 +2,6 @@ package com.meetpeople.nav.graph
 
 import com.ramcosta.composedestinations.annotation.NavGraph
 
-@BottomNavGraph(start = true)
+@BottomNavGraph
 @NavGraph
-annotation class HomeNavGraph(val start: Boolean = false)
+annotation class NotificationsNavGraph(val start: Boolean = false)

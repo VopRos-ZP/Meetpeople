@@ -1,22 +1,22 @@
-package com.meetpeople.views.signIn
+package com.meetpeople.views.signUp
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material.Button
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import com.meetpeople.nav.graph.AuthNavGraph
-import com.meetpeople.views.destinations.SignUpScreenDestination
+import com.meetpeople.views.destinations.RootScreenDestination
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
-@AuthNavGraph(start = true)
+@AuthNavGraph
 @Destination
 @Composable
-fun SignInScreen(navigator: DestinationsNavigator) {
+fun SignUpScreen(navigator: DestinationsNavigator) {
     Column {
-        Text(text = "SignIn")
-        Button(onClick = { navigator.navigate(SignUpScreenDestination) }) {
-            Text(text = "to SignUp")
+        Text(text = "SignUp")
+        Button(onClick = { navigator.navigate(RootScreenDestination) }) {
+            Text(text = "to bottom bar")
         }
     }
 }
