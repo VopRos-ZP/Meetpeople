@@ -7,6 +7,7 @@
     <color name="item_ripple_color">#14FFFFFF</color>
     <color name="main">#FFA000</color>
     <color name="divider">#1F000000</color>
+    <color name="papayawhip">#ffefd5</color> // побег папайи
 
     <color name="darkText_highEmphasis">#DE000000</color> <!-- 87% -->
     <color name="darkText_mediumEmphasis">#99000000</color> <!-- 60% -->
