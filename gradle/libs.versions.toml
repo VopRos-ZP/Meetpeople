@@ -50,6 +50,7 @@ firebase-auth = { module = "com.google.firebase:firebase-auth-ktx" }
 # Kotlin serialization
 kotlin-serialization = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlin-serialization" }
 play-services-maps = { group = "com.google.android.gms", name = "play-services-maps", version = "18.2.0" }
+androidx-navigation-fragment = { group = "androidx.navigation", name = "navigation-fragment", version = "2.7.5" }
 
 [plugins]
 application = { id = "com.android.application", version.ref = "agp" }

@@ -7,11 +7,11 @@
         android:title="Главная" />
     <item
         android:id="@+id/bottom_dialogs"
-        android:icon="@drawable/icon_dialogs"
+        android:icon="@drawable/icon_chat"
         android:title="Диалоги" />
     <item
         android:id="@+id/bottom_createMeeting"
-        android:icon="@drawable/icon_shoes"
+        android:icon="@drawable/icon_add"
         android:title="Встреча" />
     <item
         android:id="@+id/bottom_notifications"

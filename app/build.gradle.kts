@@ -46,6 +46,7 @@ dependencies {
     /** DI **/
     implementation(libs.hilt.android)
     implementation(libs.play.services.maps)
+    implementation(libs.androidx.navigation.fragment)
     ksp(libs.hilt.compiler)
     /** Core **/
     implementation(libs.bundles.android.core)
